@@ -1,0 +1,5 @@
+{
+  "name": "go-practices-plugin",
+  "description": "Adds general go practice rules that I personally like",
+  "version": "1.0.0"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "my-plugins",
+  "owner": {
+    "name": "Jonathan Arnold"
+  },
+  "plugins": [
+    {
+      "name": "go-practices-plugin",
+      "source": "./plugins/go-practices-plugin",
+      "description": "Go code quality, conventions, and testing rules covering standard library-first HTTP services, pgx database access, error handling, and BDD-style testing with testify"
+    },
+    {
+      "name": "engineering-practices-plugin",
+      "source": "./plugins/engineering-practices-plugin",
+      "description": "Language-agnostic engineering practices including conventional commits, PR discipline, spec-linked delivery, ADRs, and definition of done"
+    },
+    {
+      "name": "agentic-development-plugin",
+      "source": "./plugins/agentic-development-plugin",
+      "description": "Agentic development workflow with spec, research, plan, and implement commands following a human-in-the-loop phased approach"
+    }
+  ]
+}
