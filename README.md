@@ -34,6 +34,20 @@ Language-agnostic engineering practices that apply to all development work.
 |------|-------------|
 | `development-practices` | Conventional commits, PR discipline (~400 lines), spec-linked delivery, ADRs, definition of done |
 
+**Commands:**
+
+| Command | Description |
+|---------|-------------|
+| `/pr-description` | Write a PR description for the current branch, derived from the diff, filling the repo's PR template |
+
+**Templates:**
+
+`templates/pull_request_template.md` is a language-agnostic PR template with Scope, Work Done, Steps to Test, and Screenshots sections. `/pr-description` falls back to it when a repo has no `.github/pull_request_template.md`. Copy it into a repo to adopt it:
+
+```bash
+cp plugins/engineering-practices-plugin/templates/pull_request_template.md .github/
+```
+
 ### agentic-development-plugin
 
 A phased, human-in-the-loop development workflow inspired by the spec-research-plan-implement pattern.
@@ -58,6 +72,23 @@ A phased, human-in-the-loop development workflow inspired by the spec-research-p
 | `implementation-phase` | Protocol for executing approved plans |
 | `project-documentation` | Formatting rules and templates for all docs |
 
+### technical-writing-plugin
+
+Applies ASD-STE100 Simplified Technical English discipline to technical documentation: one meaning per word, active voice, simple tenses, short sentences, no ellipsis. Invoked explicitly — it does not activate automatically.
+
+**Commands:**
+
+| Command | Description |
+|---------|-------------|
+| `/ste` | Rewrite a document, section, or pasted text into Simplified Technical English |
+| `/ste-review` | Report which rules a document breaks, without editing it |
+
+**Skills:**
+
+| Skill | Description |
+|-------|-------------|
+| `simplified-technical-english` | Rewrite rules, per-document-type limits, worked before/after examples |
+
 ## Repository Structure
 
 ```
@@ -71,11 +102,18 @@ plugins/
   engineering-practices-plugin/
     .claude-plugin/
       plugin.json
+    commands/
     rules/
+    templates/
   agentic-development-plugin/
     .claude-plugin/
       plugin.json
     commands/
     rules/
+    skills/
+  technical-writing-plugin/
+    .claude-plugin/
+      plugin.json
+    commands/
     skills/
 ```
