@@ -58,6 +58,23 @@ A phased, human-in-the-loop development workflow inspired by the spec-research-p
 | `implementation-phase` | Protocol for executing approved plans |
 | `project-documentation` | Formatting rules and templates for all docs |
 
+### technical-writing-plugin
+
+Applies ASD-STE100 Simplified Technical English discipline to technical documentation: one meaning per word, active voice, simple tenses, short sentences, no ellipsis. Invoked explicitly — it does not activate automatically.
+
+**Commands:**
+
+| Command | Description |
+|---------|-------------|
+| `/ste` | Rewrite a document, section, or pasted text into Simplified Technical English |
+| `/ste-review` | Report which rules a document breaks, without editing it |
+
+**Skills:**
+
+| Skill | Description |
+|-------|-------------|
+| `simplified-technical-english` | Rewrite rules, per-document-type limits, worked before/after examples |
+
 ## Repository Structure
 
 ```
@@ -77,5 +94,10 @@ plugins/
       plugin.json
     commands/
     rules/
+    skills/
+  technical-writing-plugin/
+    .claude-plugin/
+      plugin.json
+    commands/
     skills/
 ```

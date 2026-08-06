@@ -1,0 +1,5 @@
+{
+  "name": "technical-writing-plugin",
+  "description": "Technical writing discipline based on ASD-STE100 Simplified Technical English — one meaning per word, active voice, simple tenses, short sentences — applied to READMEs, ADRs, runbooks, API docs, error messages, and commit messages",
+  "version": "1.0.0"
+}

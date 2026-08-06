@@ -18,6 +18,11 @@
       "name": "agentic-development-plugin",
       "source": "./plugins/agentic-development-plugin",
       "description": "Agentic development workflow with spec, research, plan, and implement commands following a human-in-the-loop phased approach"
+    },
+    {
+      "name": "technical-writing-plugin",
+      "source": "./plugins/technical-writing-plugin",
+      "description": "Technical writing discipline based on ASD-STE100 Simplified Technical English — one meaning per word, active voice, simple tenses, short sentences — applied to READMEs, ADRs, runbooks, API docs, error messages, and commit messages"
     }
   ]
 }
