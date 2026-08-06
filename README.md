@@ -34,6 +34,20 @@ Language-agnostic engineering practices that apply to all development work.
 |------|-------------|
 | `development-practices` | Conventional commits, PR discipline (~400 lines), spec-linked delivery, ADRs, definition of done |
 
+**Commands:**
+
+| Command | Description |
+|---------|-------------|
+| `/pr-description` | Write a PR description for the current branch, derived from the diff, filling the repo's PR template |
+
+**Templates:**
+
+`templates/pull_request_template.md` is a language-agnostic PR template with Scope, Work Done, Steps to Test, and Screenshots sections. `/pr-description` falls back to it when a repo has no `.github/pull_request_template.md`. Copy it into a repo to adopt it:
+
+```bash
+cp plugins/engineering-practices-plugin/templates/pull_request_template.md .github/
+```
+
 ### agentic-development-plugin
 
 A phased, human-in-the-loop development workflow inspired by the spec-research-plan-implement pattern.
@@ -88,7 +102,9 @@ plugins/
   engineering-practices-plugin/
     .claude-plugin/
       plugin.json
+    commands/
     rules/
+    templates/
   agentic-development-plugin/
     .claude-plugin/
       plugin.json

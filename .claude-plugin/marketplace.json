@@ -12,7 +12,7 @@
     {
       "name": "engineering-practices-plugin",
       "source": "./plugins/engineering-practices-plugin",
-      "description": "Language-agnostic engineering practices including conventional commits, PR discipline, spec-linked delivery, ADRs, and definition of done"
+      "description": "Language-agnostic engineering practices including conventional commits, PR discipline, spec-linked delivery, ADRs, and definition of done, with a /pr-description command and a reusable pull request template"
     },
     {
       "name": "agentic-development-plugin",
