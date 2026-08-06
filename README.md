@@ -4,11 +4,23 @@ A personal collection of Claude Code plugins for Go development, engineering pra
 
 ## Installation
 
+Add the marketplace, then install a plugin from it:
+
 ```bash
-/plugin install <plugin-name>@my-claude-marketplace
+/plugin marketplace add mixnblend/my-claude-marketplace
+/plugin install <plugin-name>@my-plugins
 ```
 
-Point the marketplace source at this repository (local path or GitHub URL).
+The marketplace is named `my-plugins` — that is the `name` field in `.claude-plugin/marketplace.json`, not the repository name. Use `my-plugins` after the `@`.
+
+To pick up new or changed plugins after this repository is updated:
+
+```bash
+/plugin marketplace update my-plugins
+/plugin update <plugin-name>@my-plugins
+```
+
+Updating the marketplace refreshes the catalogue; it does not update a plugin that is already installed. Restart Claude Code afterwards so new commands and skills load.
 
 ## Plugins
 
