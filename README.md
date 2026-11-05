@@ -58,12 +58,11 @@ Hooks run automatically when the plugin is installed. A rule is guidance that Cl
 | Plugin | Event | What it does | Needs |
 | ------ | ----- | ------------ | ----- |
 | `engineering-practices-plugin` | `SessionStart` | Loads the `development-practices` rule | — |
-| `engineering-practices-plugin` | `PreToolUse` on `Bash` | Blocks a `git commit` whose subject is not `type(scope): description` with an allowed type | `python3` |
 | `technical-writing-plugin` | `SessionStart` | Loads the `simplified-technical-english` rule | — |
 | `go-practices-plugin` | `PostToolUse` on `Edit\|Write` | Reports `gofmt` and `go vet` problems in the edited file's package | `go`, `jq` |
 | `agentic-development-plugin` | `PostToolUse` on `Edit\|Write` | Reports `markdownlint-cli2` problems in an edited Markdown file under `docs/` | `markdownlint-cli2`, `jq` |
 
-The hooks report problems to Claude. They do not change files. A hook skips silently when a tool it needs is not installed. The commit hook also allows a commit when it cannot read the message from the command, for example a commit that opens an editor.
+The hooks report problems to Claude. They do not change files. A hook skips silently when a tool it needs is not installed.
 
 ## Plugins
 
@@ -108,6 +107,17 @@ Language-agnostic engineering practices that apply to all development work.
 ```bash
 cp plugins/engineering-practices-plugin/templates/pull_request_template.md .github/
 ```
+
+`templates/.commitlintrc.json` is a [commitlint](https://commitlint.js.org/) config that enforces the commit format from the `development-practices` rule. It allows only the types `feat`, `fix`, `refactor`, `chore`, `docs`, and `ci`. The rule tells Claude the format; commitlint rejects commits that break it, from Claude and from people. Install it in a repo as a git `commit-msg` hook:
+
+```bash
+cp plugins/engineering-practices-plugin/templates/.commitlintrc.json .
+npm install --save-dev @commitlint/cli @commitlint/config-conventional husky
+npx husky init
+echo 'npx --no -- commitlint --edit "$1"' > .husky/commit-msg
+```
+
+`npx husky init` also writes a `.husky/pre-commit` file that runs `npm test`. Delete it or edit it if the repo does not use `npm test`. Any git hook manager works in place of husky, for example lefthook. The `commit-msg` hook must run `npx --no -- commitlint --edit <message-file>`.
 
 ### agentic-development-plugin
 
