@@ -1,4 +1,3 @@
-
 # Development Practices
 
 These practices apply to all development work regardless of language or project.
@@ -12,8 +11,6 @@ Types: `feat`, `fix`, `refactor`, `chore`, `docs`, `ci`.
 There is no `test` type. Test-only changes use `chore`.
 
 Scope is the package, module, or area of change. Keep descriptions concise and in imperative mood.
-
-Use only these types: `feat`, `fix`, `refactor`, `chore`, `docs`, `ci`.
 
 ```text
 feat(delivery): add retry logic for transient provider failures
@@ -45,7 +42,7 @@ Every `feat:` PR must link to its specification in `docs/specs/`. The PR descrip
 - Any deviations from the spec discovered during implementation
 - Why the deviation was necessary
 
-If there is no spec for the work, write one first (`/write-spec`). Specs don't need to be long — a 30-line spec that captures the problem, approach, and testing strategy is enough.
+If there is no spec for the work, write one first (`/spec`). Specs don't need to be long — a 30-line spec that captures the problem, approach, and testing strategy is enough.
 
 ### The Litmus Test
 

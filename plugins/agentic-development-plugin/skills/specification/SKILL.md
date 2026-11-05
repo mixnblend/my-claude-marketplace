@@ -34,4 +34,4 @@ Sections:
 - Do not describe implementation details (specific function signatures, exact SQL queries). Describe what needs to happen and why.
 - If you're unsure about the right approach, describe the options and their trade-offs in the open questions section rather than picking one silently.
 - The spec should be understandable by someone who knows the domain but hasn't looked at this specific area of the codebase recently.
-- Follow the formatting rules in the project-documentation skill.
+- Follow the formatting rules in `${CLAUDE_PLUGIN_ROOT}/rules/project-documentation.md`.

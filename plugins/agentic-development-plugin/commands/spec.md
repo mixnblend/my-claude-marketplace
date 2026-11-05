@@ -7,8 +7,8 @@ Produce a specification document for the described work. The spec will be review
 ## Prerequisites
 
 Read the following before starting:
-- `.claude/skills/project-documentation/SKILL.md`
-- `.claude/skills/specification/SKILL.md`
+- `${CLAUDE_PLUGIN_ROOT}/rules/project-documentation.md`
+- `${CLAUDE_PLUGIN_ROOT}/skills/specification/SKILL.md`
 
 If existing code or documentation is relevant, read it to understand current state.
 

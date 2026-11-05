@@ -37,4 +37,4 @@ Produce `docs/plans/[task-slug].md` with these sections:
 - If the plan would require deviating from conventions in CLAUDE.md, flag it explicitly.
 - If the research document has open questions that affect the plan, list them and explain what the plan assumes.
 - Keep the plan under 200 lines. If it's longer, the work should probably be split into separate tasks.
-- Follow the formatting rules in the project-documentation skill.
+- Follow the formatting rules in `${CLAUDE_PLUGIN_ROOT}/rules/project-documentation.md`.

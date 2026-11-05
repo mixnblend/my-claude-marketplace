@@ -37,4 +37,4 @@ Produce `docs/research/[task-slug].md` with these sections:
 - Do not write any implementation code.
 - Do not make assumptions about the right approach — document what you find and flag uncertainties.
 - If you find something that contradicts the specification, flag it clearly rather than resolving it yourself.
-- Follow the formatting rules in the project-documentation skill.
+- Follow the formatting rules in `${CLAUDE_PLUGIN_ROOT}/rules/project-documentation.md`.

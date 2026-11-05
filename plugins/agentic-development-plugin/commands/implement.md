@@ -7,10 +7,10 @@ Implement the approved plan, phase by phase. The plan has been reviewed and appr
 ## Prerequisites
 
 Read the following before starting:
-- `.claude/skills/implementation-phase/SKILL.md`
+- `${CLAUDE_PLUGIN_ROOT}/skills/implementation-phase/SKILL.md`
 - The approved plan in `docs/plans/` for this task
 
-Development practices, Go conventions, Go testing, Go code quality, and event-driven conventions are loaded automatically via `.claude/rules/`.
+The development-practices and Go rules load automatically when they are installed in `.claude/rules/` or `~/.claude/rules/`.
 
 ## Process
 
