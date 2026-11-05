@@ -7,8 +7,8 @@ Produce an Architecture Decision Record for the work just completed. You have ma
 ## Prerequisites
 
 Read the following before starting:
-- `.claude/skills/project-documentation/SKILL.md`
+- `${CLAUDE_PLUGIN_ROOT}/rules/project-documentation.md`
 
 ## Process
 
-Review the changes made in the current task. Determine the next ADR number by checking `docs/adr/` for the highest existing number. Write the ADR following the project-documentation skill's ADR format.
+Review the changes made in the current task. Determine the next ADR number by checking `docs/adr/` for the highest existing number. Write the ADR following the ADR format in the project-documentation rule.

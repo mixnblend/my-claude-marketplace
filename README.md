@@ -22,13 +22,32 @@ To pick up new or changed plugins after this repository is updated:
 
 Updating the marketplace refreshes the catalogue; it does not update a plugin that is already installed. Restart Claude Code afterwards so new commands and skills load.
 
+## Installing Rules
+
+Claude Code does not load a plugin's `rules/` directory. Installing a plugin gives you its commands and skills only. To use a plugin's rules, copy them into a rules directory:
+
+| Destination | Effect |
+| ----------- | ------ |
+| `~/.claude/rules/` | The rules apply in every project |
+| `<project>/.claude/rules/` | The rules apply in that project only. Commit them to share them with the team |
+
+```bash
+git clone https://github.com/mixnblend/my-claude-marketplace.git
+mkdir -p ~/.claude/rules
+cp my-claude-marketplace/plugins/<plugin-name>/rules/*.md ~/.claude/rules/
+```
+
+A rule without `paths` front matter loads at the start of every session. A rule with `paths` loads only when Claude works on a matching file. Run `/context all` to see which rules loaded.
+
+Copied rules do not update with the plugin. Copy them again after you pull changes.
+
 ## Plugins
 
 ### go-practices-plugin
 
-Opinionated Go rules covering code quality, conventions, and testing. Activates automatically on `.go` and `_test.go` files.
+Opinionated Go rules covering code quality, conventions, and testing. The rules are short, one line per convention. The `go-practices` skill holds the worked examples, so they load only when needed.
 
-**Rules:**
+**Rules** (copy into a rules directory — see [Installing Rules](#installing-rules)):
 
 | Rule | Scope | Description |
 |------|-------|-------------|
@@ -36,11 +55,17 @@ Opinionated Go rules covering code quality, conventions, and testing. Activates 
 | `go-conventions` | `**/*.go` | Standard library-first HTTP services, pgx database access, error handling, package structure |
 | `go-testing` | `**/*_test.go` | BDD-style tests with testify, table-driven tests, integration test suites, mocking conventions |
 
+**Skills:**
+
+| Skill | Description |
+|-------|-------------|
+| `go-practices` | Worked examples and rationale for every Go rule, split into code quality, conventions, and testing references |
+
 ### engineering-practices-plugin
 
 Language-agnostic engineering practices that apply to all development work.
 
-**Rules:**
+**Rules** (copy into a rules directory — see [Installing Rules](#installing-rules)):
 
 | Rule | Description |
 |------|-------------|
@@ -74,6 +99,14 @@ A phased, human-in-the-loop development workflow inspired by the spec-research-p
 | `/implement` | Execute an approved plan phase by phase |
 | `/adr` | Write an Architecture Decision Record for completed work |
 
+**Rules** (copy into a rules directory — see [Installing Rules](#installing-rules)):
+
+| Rule | Scope | Description |
+|------|-------|-------------|
+| `project-documentation` | `docs/**` | File naming, headings, line limits, decision tables, and ADR format for all documents in `docs/`. The commands read it directly, so they work without copying it |
+
+This plugin uses the `development-practices` rule from `engineering-practices-plugin`.
+
 **Skills:**
 
 | Skill | Description |
@@ -82,11 +115,16 @@ A phased, human-in-the-loop development workflow inspired by the spec-research-p
 | `research-phase` | Protocol for codebase investigation before planning |
 | `planning-phase` | Protocol for breaking work into implementable phases |
 | `implementation-phase` | Protocol for executing approved plans |
-| `project-documentation` | Formatting rules and templates for all docs |
 
 ### technical-writing-plugin
 
-Applies ASD-STE100 Simplified Technical English discipline to technical documentation: one meaning per word, active voice, simple tenses, short sentences, no ellipsis. Invoked explicitly — it does not activate automatically.
+Applies ASD-STE100 Simplified Technical English discipline to technical documentation: one meaning per word, active voice, simple tenses, short sentences, no ellipsis. The rule applies the core constraints whenever Claude writes documentation, commit messages, or error strings. The commands and skill do a full rewrite or review on request.
+
+**Rules** (copy into a rules directory — see [Installing Rules](#installing-rules)):
+
+| Rule | Description |
+|------|-------------|
+| `simplified-technical-english` | Core STE constraints: one meaning per word, active voice, simple tenses, sentence limits, conditions first |
 
 **Commands:**
 
@@ -111,6 +149,7 @@ plugins/
     .claude-plugin/
       plugin.json
     rules/
+    skills/
   engineering-practices-plugin/
     .claude-plugin/
       plugin.json
@@ -127,5 +166,6 @@ plugins/
     .claude-plugin/
       plugin.json
     commands/
+    rules/
     skills/
 ```

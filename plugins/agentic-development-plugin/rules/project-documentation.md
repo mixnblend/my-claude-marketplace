@@ -1,6 +1,6 @@
 ---
-name: project-documentation
-description: Formatting rules, templates, and conventions for all documents in docs/. Use when producing or editing ADRs, specs, plans, or research documents. Loaded explicitly by /research, /plan, /write-spec, and /write-adr commands, and should also be consulted when editing any existing document in docs/.
+paths:
+  - "docs/**"
 ---
 
 # Project Documentation Conventions
@@ -11,8 +11,8 @@ description: Formatting rules, templates, and conventions for all documents in d
 | ---- | -------- | ------- |
 | Research | `docs/research/[NN]-[ticket-id]-[short-slug].md` | `/research` |
 | Plan | `docs/plans/[NN]-[ticket-id]-[short-slug].md` | `/plan` |
-| Specification | `docs/specs/[NN]-[ticket-id]-[short-slug].md` | `/write-spec` |
-| ADR | `docs/adr/NNNN-[short-title].md` | `/write-adr` |
+| Specification | `docs/specs/[NN]-[ticket-id]-[short-slug].md` | `/spec` |
+| ADR | `docs/adr/NNNN-[short-title].md` | `/adr` |
 
 Specs, research, and plans are prefixed with a two-digit sequence number (`NN`) matching the backlog implementation order, followed by the ticket ID and a short slug. This makes the project timeline visible when browsing the directory. Look up the ticket's position in `docs/BACKLOG.md` to determine the sequence number.
 
@@ -69,11 +69,11 @@ The following questions were raised during research. Decisions are recorded here
 
 | # | Question | Decision |
 | - | -------- | -------- |
-| 1 | Short question? | **Answer.** Rationale. Note if a skill file was updated. |
+| 1 | Short question? | **Answer.** Rationale. Note if a rule file was updated. |
 | 2 | Another question? | **Answer.** Rationale. |
 ```
 
-When a decision establishes a new convention, update the relevant skill file and note "Skill file updated." in the decision cell.
+When a decision establishes a new convention, update the relevant rule or skill file and note "Rule file updated." in the decision cell.
 
 ## ADR Format
 

@@ -1,5 +1,5 @@
 {
   "name": "agentic-development-plugin",
   "description": "Adds agentic development commands and skills using the spec, research, plan, implement flow outlined by human layer",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

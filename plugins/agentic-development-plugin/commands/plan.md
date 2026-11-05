@@ -7,8 +7,8 @@ Produce a phased implementation plan based on the research document for this tas
 ## Prerequisites
 
 Read the following before starting:
-- `.claude/skills/project-documentation/SKILL.md`
-- `.claude/skills/planning-phase/SKILL.md`
+- `${CLAUDE_PLUGIN_ROOT}/rules/project-documentation.md`
+- `${CLAUDE_PLUGIN_ROOT}/skills/planning-phase/SKILL.md`
 - The research document in `docs/research/` for this task
 - The specification in `docs/specs/` if one exists
 

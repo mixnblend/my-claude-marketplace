@@ -7,8 +7,8 @@ Investigate the codebase to understand how to approach this task. Do not write a
 ## Prerequisites
 
 Read the following before starting:
-- `.claude/skills/project-documentation/SKILL.md`
-- `.claude/skills/research-phase/SKILL.md`
+- `${CLAUDE_PLUGIN_ROOT}/rules/project-documentation.md`
+- `${CLAUDE_PLUGIN_ROOT}/skills/research-phase/SKILL.md`
 
 ## Process
 
