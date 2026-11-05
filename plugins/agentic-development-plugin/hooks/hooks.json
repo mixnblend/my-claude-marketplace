@@ -1,0 +1,16 @@
+{
+  "description": "Report markdownlint problems after Claude writes or edits a document under docs/",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/lint-docs.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}

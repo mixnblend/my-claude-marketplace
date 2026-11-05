@@ -1,0 +1,15 @@
+{
+  "description": "Load the Simplified Technical English rule at session start",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/rules/simplified-technical-english.md\""
+          }
+        ]
+      }
+    ]
+  }
+}
