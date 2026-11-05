@@ -1,0 +1,16 @@
+{
+  "description": "Report gofmt and go vet problems after Claude writes or edits a Go file",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/check-go-file.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
