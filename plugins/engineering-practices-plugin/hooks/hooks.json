@@ -1,0 +1,15 @@
+{
+  "description": "Load the development-practices rule at session start",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/rules/development-practices.md\""
+          }
+        ]
+      }
+    ]
+  }
+}

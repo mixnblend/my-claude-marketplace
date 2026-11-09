@@ -24,7 +24,16 @@ Updating the marketplace refreshes the catalogue; it does not update a plugin th
 
 ## Installing Rules
 
-Claude Code does not load a plugin's `rules/` directory. Installing a plugin gives you its commands and skills only. To use a plugin's rules, copy them into a rules directory:
+Claude Code does not load a plugin's `rules/` directory. Two rules load through a `SessionStart` hook instead, so they work as soon as you install the plugin:
+
+| Rule | Plugin |
+| ---- | ------ |
+| `development-practices` | `engineering-practices-plugin` |
+| `simplified-technical-english` | `technical-writing-plugin` |
+
+Do not copy these two rules as well. If you do, Claude loads them twice.
+
+The other rules are path-scoped, and a hook cannot scope them. To use them, copy them into a rules directory:
 
 | Destination | Effect |
 | ----------- | ------ |
@@ -34,12 +43,26 @@ Claude Code does not load a plugin's `rules/` directory. Installing a plugin giv
 ```bash
 git clone https://github.com/mixnblend/my-claude-marketplace.git
 mkdir -p ~/.claude/rules
-cp my-claude-marketplace/plugins/<plugin-name>/rules/*.md ~/.claude/rules/
+cp my-claude-marketplace/plugins/go-practices-plugin/rules/*.md ~/.claude/rules/
+cp my-claude-marketplace/plugins/agentic-development-plugin/rules/*.md ~/.claude/rules/
 ```
 
 A rule without `paths` front matter loads at the start of every session. A rule with `paths` loads only when Claude works on a matching file. Run `/context all` to see which rules loaded.
 
 Copied rules do not update with the plugin. Copy them again after you pull changes.
+
+## Hooks
+
+Hooks run automatically when the plugin is installed. A rule is guidance that Claude can miss; a hook runs every time.
+
+| Plugin | Event | What it does | Needs |
+| ------ | ----- | ------------ | ----- |
+| `engineering-practices-plugin` | `SessionStart` | Loads the `development-practices` rule | — |
+| `technical-writing-plugin` | `SessionStart` | Loads the `simplified-technical-english` rule | — |
+| `go-practices-plugin` | `PostToolUse` on `Edit\|Write` | Reports `gofmt` and `go vet` problems in the edited file's package | `go`, `jq` |
+| `agentic-development-plugin` | `PostToolUse` on `Edit\|Write` | Reports `markdownlint-cli2` problems in an edited Markdown file under `docs/` | `markdownlint-cli2`, `jq` |
+
+The hooks report problems to Claude. They do not change files. A hook skips silently when a tool it needs is not installed.
 
 ## Plugins
 
@@ -65,7 +88,7 @@ Opinionated Go rules covering code quality, conventions, and testing. The rules 
 
 Language-agnostic engineering practices that apply to all development work.
 
-**Rules** (copy into a rules directory — see [Installing Rules](#installing-rules)):
+**Rules** (loaded by a hook — see [Hooks](#hooks)):
 
 | Rule | Description |
 |------|-------------|
@@ -84,6 +107,17 @@ Language-agnostic engineering practices that apply to all development work.
 ```bash
 cp plugins/engineering-practices-plugin/templates/pull_request_template.md .github/
 ```
+
+`templates/.commitlintrc.json` is a [commitlint](https://commitlint.js.org/) config that enforces the commit format from the `development-practices` rule. It allows only the types `feat`, `fix`, `refactor`, `chore`, `docs`, and `ci`. The rule tells Claude the format; commitlint rejects commits that break it, from Claude and from people. Install it in a repo as a git `commit-msg` hook:
+
+```bash
+cp plugins/engineering-practices-plugin/templates/.commitlintrc.json .
+npm install --save-dev @commitlint/cli @commitlint/config-conventional husky
+npx husky init
+echo 'npx --no -- commitlint --edit "$1"' > .husky/commit-msg
+```
+
+`npx husky init` also writes a `.husky/pre-commit` file that runs `npm test`. Delete it or edit it if the repo does not use `npm test`. Any git hook manager works in place of husky, for example lefthook. The `commit-msg` hook must run `npx --no -- commitlint --edit <message-file>`.
 
 ### agentic-development-plugin
 
@@ -120,7 +154,7 @@ This plugin uses the `development-practices` rule from `engineering-practices-pl
 
 Applies ASD-STE100 Simplified Technical English discipline to technical documentation: one meaning per word, active voice, simple tenses, short sentences, no ellipsis. The rule applies the core constraints whenever Claude writes documentation, commit messages, or error strings. The commands and skill do a full rewrite or review on request.
 
-**Rules** (copy into a rules directory — see [Installing Rules](#installing-rules)):
+**Rules** (loaded by a hook — see [Hooks](#hooks)):
 
 | Rule | Description |
 |------|-------------|
@@ -148,23 +182,27 @@ plugins/
   go-practices-plugin/
     .claude-plugin/
       plugin.json
+    hooks/
     rules/
     skills/
   engineering-practices-plugin/
     .claude-plugin/
       plugin.json
+    hooks/
     commands/
     rules/
     templates/
   agentic-development-plugin/
     .claude-plugin/
       plugin.json
+    hooks/
     commands/
     rules/
     skills/
   technical-writing-plugin/
     .claude-plugin/
       plugin.json
+    hooks/
     commands/
     rules/
     skills/
